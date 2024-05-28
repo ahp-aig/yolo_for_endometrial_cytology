@@ -8,7 +8,7 @@ This application of AI aims to demonstrate how it can be seamlessly incorporated
 ## System, Software and Microscope Setup
 - **Microscope**: ECLIPSE Ci (Nikon Co., Tokyo, Japan)
 - **CCD Camera**: JCS-HR5U (CANON Inc., Tokyo, Japan)
--  **Anaconda**: Distribution (version 2022.10)
+- **Anaconda**: Distribution (version 2022.10)
 - **Python**: 3.10.9
 - **Deep Learning Framework**: PyTorch 1.13.1
 - **YOLOv5**:Utilized for object detection, adapted for our specific needs in endometrial cytological analysis.
@@ -18,7 +18,7 @@ While these specific devices and software were used in our study, the implemente
 
 
 ## Installation
-First, install Anaconda from the official [Anaconda Website](https://www.anaconda.com/). Then, set up your environment using the following commands:
+First, install Anaconda (version 2022.10) from the official [Anaconda Website](https://www.anaconda.com/). Then, set up your environment using the following commands:
 
 ```bash
 conda create -n yolov5x python=3.10.9
@@ -41,7 +41,7 @@ pip install -r requirements.txt
 - **Image Selection**: For malignant cases, images centered on abnormal cell clusters identified by a gynecologic pathologist; for benign cases, random selections of all visible cells.
 
 ## Dataset Preparation Guidelines
-Prepare your dataset by categorizing images into benign and malignant types. For annotations, use tools like LabelImg, a graphical image annotation tool, to mark areas of interest such as abnormal cell clusters. Ensure that unannotated regions are labeled as "background." We recommend dividing your data into training, validation, and testing sets using an 8:1:1 ratio. This setup will help mimic the conditions under which our model was developed and tested.
+Prepare your dataset by categorizing images into benign and malignant types. For annotations, use tools like [LabelImg](https://github.com/HumanSignal/labelImg/tree/master), a graphical image annotation tool, to mark areas of interest such as abnormal cell clusters. Ensure that unannotated regions are labeled as "background." We recommend dividing your data into training, validation, and testing sets using an 8:1:1 ratio. This setup will help mimic the conditions under which our model was developed and tested.
 
 ## Training the Model
 After preparing your dataset, you can train the model using the following command:
