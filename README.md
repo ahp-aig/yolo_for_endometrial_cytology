@@ -51,21 +51,19 @@ python train.py --batch-size 4 --epochs 200 --data path_to_your_data\data.yaml -
 ```
 Replace 'path_to_your_data/data.yaml' with the path to your dataset configuration file and 'path_to_initial_weights/weights_file.pt' with the path to your initial weights file, if available. This command initializes the training process using your own data, allowing you to adapt and optimize the model according to your specific needs.
 
-## Quick Start: Using Pre-trained Model for Inference
-If you wish to use our pre-trained model for immediate inference on your endometrial cytology images, you can download the pre-trained weights and use the following steps:
+## Quick Start: Using Our Trained Model for Inference
+If you wish to use our trained model for immediate inference on your endometrial cytology images, you can download the trained weights and use the following steps:
 
-1. **Download Pre-trained Weights**
-   - Download the pre-trained model weights from this [link](URL_to_pretrained_weights.pt).
+1. **Download Our Trained Weights**
+   - Download our best performing model weights from this [best.pt](https://github.com/ahp-aig/yolo_for_endometrial_cytology/raw/main/best.pt).
 
 2. **Setup Your Environment**
    - Ensure your environment is set up according to the installation instructions provided earlier in this document.
 
 3. **Run Inference**
-   - Use the following command to run inference on your dataset:
+   - Use the following command to run inference using the trained model in your Anaconda virtual environment within Visual Studio Code. This command will use the input from your microscope's CCD camera connected via USB, and display the real-time detection results with bounding boxes and confidence scores (CS) of 0.225 or higher on your monitor.
    ```bash
-   python detect.py --weights path_to_downloaded_weights/weights_file.pt --source path_to_your_images/
-   ```
-   Replace 'path_to_downloaded_weights/weights_file.pt' with the path where you saved the downloaded weights, and 'path_to_your_images/' with the path to your images.
+   python detect.py --source 0 --weights path_to_downloaded_weights/best.pt --conf 0.225
 
 ### Hyperparameters and Training Details
 We have adapted the training process according to specific needs for cytological image analysis. Below are the hyperparameters used:
