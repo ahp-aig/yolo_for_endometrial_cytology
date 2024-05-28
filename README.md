@@ -157,5 +157,4 @@ year={2024}
 
 ## Privacy and Compliance Notice
 
-Privacy and Compliance Notice
 The cytological images used in our study are not publicly available due to patient privacy concerns and hospital policy compliance. Please note that the use of AI tools and software in clinical diagnostics must comply with local medical device regulations and laws. The pre-trained model provided here is intended for research and development purposes only and should not be used as a diagnostic tool without proper validation and regulatory approval. Users are responsible for ensuring that the use of this model complies with all applicable laws and standards in their jurisdiction. Any clinical application or diagnostic use of the model requires further validation and must adhere to the necessary regulatory approvals.
