@@ -1,11 +1,10 @@
 # Project Title: From Microscope to AI: Developing an Integrated Diagnostic System for Endometrial Cytology
 
-Immediate Object Detection of Endometrial Cytology under a Microscope using YOLOv5x
+Real-Time Object Detection of Endometrial Cytology under a Microscope using YOLOv5x
 
 ## Description
 
 This repository hosts the implementation of an AI-assisted model designed to support the diagnosis of endometrial cytology through real-time object-detection technology. In the realm of microscopic cytological diagnosis, this study explores the feasibility of integrating AI technology directly into the existing diagnostic workflows without relying on whole slide imaging (WSI). 
-This application of AI aims to demonstrate how it can be seamlessly incorporated to assist with real-time diagnostics under a microscope, which could be particularly beneficial in resource-limited settings and during time-sensitive procedures such as rapid on-site evaluation (ROSE). By maintaining compatibility with current workflows, this approach holds the potential to facilitate and enhance diagnostic processes across various medical fields, not limited to endometrial cytology.
 
 ## System, Software and Microscope Setup
 
@@ -21,13 +20,14 @@ While these specific devices and software were used in our study, the implemente
 
 ## Quick Start: Using Our Trained Model for Inference
 
-If you wish to use our trained model for immediate inference on your endometrial cytology images, follow these steps:
+If you wish to use our trained model for real-time inference on your endometrial cytology images, follow these steps:
 
 ### 1. **Clone the Repository**
 
 ```bash
 git clone https://github.com/ahp-aig/yolo_for_endometrial_cytology.git
 cd yolo_for_endometrial_cytology
+```
 
 ### 2. **Download Our Trained Weights**
 
@@ -52,13 +52,13 @@ pip install -r requirements.txt
 
 ### 4. **Run Inference**
 
-Use the following command to run inference using the trained model in your Anaconda virtual environment within Visual Studio Code. This command will use the input from your microscope's CCD camera connected via USB, and display the real-time detection results with bounding boxes and confidence scores (CS) of 0.225 or higher on your monitor.
+Use the following command to run inference using the trained model in your Anaconda virtual environment within Visual Studio Code. This command will use the input from your microscope's CCD camera connected via USB, and display the real-time detection results with bounding boxes and confidence scores of 0.225 or higher on your monitor. *Please adjust the confidence score setting to match your specific environment. 
 
 ```bash
 python detect.py --source 0 --weights best.pt --conf 0.225
 ```
 
-By running this command, the live feed from the CCD camera connected to the microscope will be displayed on the monitor. The trained model will detect abnormal cell clusters in real-time, showing bounding boxes with a confidence score of 0.225 or higher.
+By running this command, the live feed from the CCD camera connected to the microscope will be displayed on the monitor. The trained model will detect abnormal cell clusters in real-time, showing bounding boxes with a confidence score of 0.225(or your confidence score setting) or higher.
 
 ## Training Your Own Model with Yolov5x for Real-Time Microscopic Detection
 
@@ -93,7 +93,10 @@ test: /path/to/your/dataset/test
 # Classes
 nc: 1  # Number of classes (e.g., only 'malignant' as 'benign' is background)
 names: ['malignant']
+```
 
+nc: This parameter (nc) represents the number of classes. In this case, it is set to 1 because only the 'malignant' class is used for detection, while 'benign' is treated as background.
+names: This list under names specifies the class labels that your model will predict. Ensure that this list matches the labels used during the annotation of your dataset.
 
 ## Acquisition of Digital Images
 
@@ -146,7 +149,7 @@ If you use this project in your research, please cite it as follows:
 ```bibtex
 @article{Mika Terasaki2024,
   title={From Microscope to AI: Developing an Integrated Diagnostic System for Endometrial Cytology},
-author={Mika Terasaki, et al.},
+author={Mika Terasaki, Shun Tanaka, Ichito Shimokawa et al.},
 journal={Journal Name},
 year={2024}
 }
