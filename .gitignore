@@ -1,0 +1,15 @@
+# macOS system files
+.DS_Store
+
+# Node modules
+/node_modules
+
+# Python byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Log files
+*.log
+
+# Environment files
+.env
