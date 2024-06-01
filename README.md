@@ -1,75 +1,47 @@
-# Project Title: From Microscope to AI: Developing an Integrated Diagnostic System for Endometrial Cytology
-
-Real-Time Object Detection of Endometrial Cytology under a Microscope using YOLOv5x
+## Project Title: 
+# From Microscope to AI: Developing an Integrated Diagnostic System with Real-Time Object Detection for Endometrial Cytology
 
 ## Description
 
-This repository hosts the implementation of an AI-assisted model designed to support the diagnosis of endometrial cytology through real-time object-detection technology. In the realm of microscopic cytological diagnosis, this study explores the feasibility of integrating AI technology directly into the existing diagnostic workflows without relying on whole slide imaging (WSI). 
+This repository contains the implementation of an AI-assisted model for the diagnosis of endometrial cytology through real-time object detection. This study demonstrates the integration of AI technology into existing diagnostic workflows without the need for whole slide imaging (WSI).
 
-## System, Software and Microscope Setup
+## Important Note
+
+Before using this repository, please adjust the settings, hyperparameters, and device choices according to your unique dataset and operating environment. This project was developed with specific hardware and dataset conditions; hence, optimal performance may require modifications tailored to your specific circumstances.
+
+## Acquisition of Digital Images
+
+- **Device Used**: iPhone SE (Apple Inc., Cupertino, CA, USA) mounted on an Olympus BX53 microscope (EVIDENT/Olympus, Tokyo, Japan).
+- **Adapter**: i-NTER LENS (MICRONET Co., Kawaguchi, Saitama, Japan).
+- **Resolution**: Images captured at 4,032 × 3,024 pixels.
+- **Settings**: Manual focus, 20x magnification.
+- **Image Selection**: Abnormal cell clusters for malignant cases; random cells for benign cases.
+
+## Prepare Your Dataset
+
+Proper annotation is crucial for effective training. Ensure each image is labeled with bounding boxes around objects of interest, such as abnormal cell clusters.
+
+- **Annotation Format**: Use tools like [LabelImg](https://github.com/tzutalin/labelImg) for YOLO format annotations, stored as `.txt` files in the same directory as the image.
+- **Dataset Structure**: Organize into `train`, `valid`, and `test` folders, each containing images and their annotations.
+
+## System, Software, and Microscope Setup
 
 - **Microscope**: ECLIPSE Ci (Nikon Co., Tokyo, Japan)
 - **CCD Camera**: JCS-HR5U (CANON Inc., Tokyo, Japan)
-- **Anaconda**: Distribution (version 2022.10)
+- **Anaconda**: Version 2022.10
 - **Python**: 3.10.9
 - **Deep Learning Framework**: PyTorch 1.13.1
-- **YOLOv5**:Utilized for object detection, adapted for our specific needs in endometrial cytological analysis.
+- **YOLOv5**: Custom adapted for endometrial cytology.
 - **IDE**: Visual Studio Code (Microsoft Co., WA, USA)
 
-While these specific devices and software were used in our study, the implemented AI model is compatible with a range of microscopes, CCD cameras, and development environments that can support PyTorch and YOLOv5x. Users are encouraged to adapt the setup based on the available equipment and software configurations to explore the potential application of this technology in various settings.
+### Setup Your Environment
 
-## Quick Start: Using Our Trained Model for Inference
-
-If you wish to use our trained model for real-time inference on your endometrial cytology images, follow these steps:
-
-### 1. **Clone the Repository**
+Download and install Anaconda from the [Anaconda Website](https://www.anaconda.com/):
 
 ```bash
-git clone https://github.com/ahp-aig/yolo_for_endometrial_cytology.git
-cd yolo_for_endometrial_cytology
+conda create -n myenv python=3.10.9
+conda activate myenv
 ```
-
-### 2. **Download Our Trained Weights**
-
-Download our best performing model weights from this [best.pt](https://github.com/ahp-aig/yolo_for_endometrial_cytology/raw/main/best.pt) and place it in the cloned repository directory.
-
-### 3. **Setup Your Environment**
-
-Ensure you have Anaconda installed. If not, download and install it from the [Anaconda Website](https://www.anaconda.com/).
-
-Create and activate a new Anaconda environment:
-
-```bash
-conda create -n yolov5x python=3.10.9
-conda activate yolov5x
-```
-
-Install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. **Run Inference**
-
-Use the following command to run inference using the trained model in your Anaconda virtual environment within Visual Studio Code. This command will use the input from your microscope's CCD camera connected via USB, and display the real-time detection results with bounding boxes and confidence scores of 0.225 or higher on your monitor. *Please adjust the confidence score setting to match your specific environment. 
-
-```bash
-python detect.py --source 0 --weights best.pt --conf 0.225
-```
-
-By running this command, the live feed from the CCD camera connected to the microscope will be displayed on the monitor. The trained model will detect abnormal cell clusters in real-time, showing bounding boxes with a confidence score of 0.225(or your confidence score setting) or higher.
-
-## Training Your Own Model with Yolov5x for Real-Time Microscopic Detection
-
-To train your own Yolov5x model for real-time microscopic object detection using your custom dataset, follow these detailed steps. This guide assumes you have already set up your development environment as described in previous sections.
-
-### Step 1: Prepare Your Dataset
-
-For effective training, your dataset should be properly annotated. Ensure each image in your dataset has corresponding labels with bounding boxes around the objects of interest, such as abnormal cell clusters. 
-
-- **Annotation Format**: Use tools like [LabelImg](https://github.com/tzutalin/labelImg) to annotate your images in YOLO format, where each annotation is stored in a separate `.txt` file in the same directory as the image. Note that benign (normal) cells and other materials should be labeled as "background."
-- **Dataset Structure**: Organize your dataset into three folders: `train`, `valid`, and `test`. Each folder should contain images and their corresponding annotation files.
 
 ## Clone the YOLOv5 repository and install the required dependencies
 
@@ -79,40 +51,26 @@ cd yolov5
 pip install -r requirements.txt
 ```
 
-### Step 2: Configure Your Training Environment
+### Configure Your Training Environment
 
-Before you start training, ensure your training environment is ready. Update the `data.yaml` file to point to your dataset directories and define the number of classes and class names.
-
-Example of `data.yaml`:
+Customize your training environment by updating the data.yaml file:
 
 ```yaml
-train: /path/to/your/dataset/train
-val: /path/to/your/dataset/valid
-test: /path/to/your/dataset/test
+train: /path/to/your/dataset/train  # Customize to your dataset location
+val: /path/to/your/dataset/valid    # Customize to your dataset location
+test: /path/to/your/dataset/test    # Customize to your dataset location
 
 # Classes
-nc: 1  # Number of classes (e.g., only 'malignant' as 'benign' is background)
-names: ['malignant']
+nc: 1  # Customize number of classes if different
+names: ['malignant']  # Customize class names based on your dataset labels
 ```
 
-nc: This parameter (nc) represents the number of classes. In this case, it is set to 1 because only the 'malignant' class is used for detection, while 'benign' is treated as background.
+nc: This parameter (nc) represents the number of classes. In this case, it is set to 1 because only the 'malignant' class is used for detection, while 'benign' is treated as background in our study.
 names: This list under names specifies the class labels that your model will predict. Ensure that this list matches the labels used during the annotation of your dataset.
-
-## Acquisition of Digital Images
-
-- **Device Used**: iPhone SE (Apple Inc., Cupertino, CA, USA) mounted on an Olympus BX53 microscope (EVIDENT/Olympus, Tokyo, Japan).
-- **Adapter**: i-NTER LENS (MICRONET Co., Kawaguchi, Saitama, Japan).
-- **Resolution**: Images captured at 4,032 × 3,024 pixels.
-- **Settings**: Manual focus adjustment with the objective lens set to 20x magnification.
-- **Image Selection**: For malignant cases, images centered on abnormal cell clusters identified by a gynecologic pathologist; for benign cases, random selections of all visible cells.
-
-## Dataset Preparation Guidelines
-
-Prepare your dataset by categorizing images into benign and malignant types. For annotations, use tools like [LabelImg](https://github.com/HumanSignal/labelImg/tree/master), a graphical image annotation tool, to mark areas of interest such as abnormal cell clusters. Ensure that unannotated regions are labeled as "background." We recommend dividing your data into training, validation, and testing sets using an 8:1:1 ratio. This setup will help mimic the conditions under which our model was developed and tested.
 
 ## Training the Model
 
-After preparing your dataset, you can train the model using the following command:
+Train your model using:
 
 ```bash
 python train.py --batch-size 4 --epochs 200 --data path_to_your_data\data.yaml --weights best_model_weights.pt
@@ -134,9 +92,22 @@ We have adapted the training process according to specific needs for cytological
 
 Full details on the hyperparameters can be found in `hyp.scratch-high.yaml`.
 
+## Evaluate the Model
+
+After training, evaluate the model's performance using the validation dataset. Use metrics such as precision, recall, and F1-score to assess the model's accuracy. For detailed evaluation methods, refer to our evaluation guide ((https://www.researchsquare.com/article/rs-4205271/v1)).
+
+### **Run Inference**
+
+Use the following command to run inference using the trained model in your Anaconda virtual environment within Visual Studio Code. This command will use the input from your microscope's CCD camera connected via USB, and display the real-time detection results with bounding boxes and appropriate confidence scores you set or higher on your monitor. 
+
+```bash
+python detect.py --source 0 --weights best.pt --conf 0.5 # Adjust the confidence score as needed
+
+```
+
 ## Additional Resources
 
-For more detailed information on modifying and using YOLOv5 for different scenarios, please refer to the [official YOLOv5 GitHub repository](https://github.com/ultralytics/yolov5).
+Refer to [the official YOLOv5 GitHub repository[(https://github.com/ultralytics/yolov5) for more information.
 
 ## License
 
@@ -157,4 +128,8 @@ year={2024}
 
 ## Privacy and Compliance Notice
 
-The cytological images used in our study are not publicly available due to patient privacy concerns and hospital policy compliance. Please note that the use of AI tools and software in clinical diagnostics must comply with local medical device regulations and laws. The pre-trained model provided here is intended for research and development purposes only and should not be used as a diagnostic tool without proper validation and regulatory approval. Users are responsible for ensuring that the use of this model complies with all applicable laws and standards in their jurisdiction. Any clinical application or diagnostic use of the model requires further validation and must adhere to the necessary regulatory approvals.
+The cytological images used in our study are not publicly available due to patient privacy concerns and hospital policy compliance. 
+
+## Legal and Ethical Considerations
+
+This AI model is provided for research purposes only and has not been approved for clinical use. Please ensure compliance with all local regulations and ethical standards before using this model in a clinical setting.
