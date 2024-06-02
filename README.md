@@ -22,7 +22,13 @@ Before using this repository, please adjust the settings, hyperparameters, and d
 Proper annotation is crucial for effective training. Ensure each image is labeled with bounding boxes around objects of interest, such as abnormal cell clusters.
 
 - **Annotation Format**: Use tools like [LabelImg](https://github.com/tzutalin/labelImg) for YOLO format annotations, stored as `.txt` files in the same directory as the image.
-- **Dataset Structure**: Organize into `train`, `valid`, and `test` folders, each containing images and their annotations.
+- **Dataset Structure**: Organize into `train`, `valid`, and `test` folders, each containing images and their annotations, and the images and labels should be put like below.
+  - train -images
+          -labels
+  - valid -images
+          -labels
+  - test  -images
+  
 
 ## System, Software, and Microscope Setup
 
