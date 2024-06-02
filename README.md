@@ -85,7 +85,7 @@ Train your model using:
 python train.py --batch-size 4 --epochs 200 --data path_to_your_data\data.yaml --weights best_model_weights.pt
 ```
 
-Replace 'path_to_your_data/data.yaml' with the path to your dataset configuration file and 'path_to_initial_weights/weights_file.pt' with the path to your initial weights file, if available. This command initializes the training process using your own data, allowing you to adapt and optimize the model according to your specific needs.
+Replace 'path_to_your_data/data.yaml' with the path to your dataset configuration file and 'path_to_initial_weights/weights_file.pt' with the path to your initial weights file, if available. This command initializes the training process using your own data, allowing you to adapt and optimize the model according to your specific needs. For other commands, refer to the official yolov5 documentation.
 
 ### Hyperparameters and Training Details
 
