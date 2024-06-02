@@ -82,7 +82,7 @@ names: This list under names specifies the class labels that your model will pre
 Train your model using:
 
 ```bash
-python train.py --batch-size 4 --epochs 200 --data path_to_your_data\data.yaml --weights best_model_weights.pt
+python train.py --batch-size 4 --epochs 200 --data path_to_your_data\data.yaml --weights path_to_your_data/yolov5x/v5l/v5m/v5s.pt
 ```
 
 Replace 'path_to_your_data/data.yaml' with the path to your dataset configuration file and 'path_to_initial_weights/weights_file.pt' with the path to your initial weights file, if available. This command initializes the training process using your own data, allowing you to adapt and optimize the model according to your specific needs. For other commands, refer to the official yolov5 documentation.
@@ -104,6 +104,9 @@ Full details on the hyperparameters can be found in `hyp.scratch-high.yaml`.
 ## Evaluate the Model
 
 After training, evaluate the model's performance using the validation dataset. Use metrics such as precision, recall, and F1-score to assess the model's accuracy. For detailed evaluation methods, refer to our evaluation guide ((https://www.researchsquare.com/article/rs-4205271/v1)).
+```bash
+python val.py --data path_to_your_data\data.yaml --weights best_model_weights.pt 
+```
 
 ### **Run Inference**
 
