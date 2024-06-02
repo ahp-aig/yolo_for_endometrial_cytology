@@ -131,7 +131,7 @@ If you use this project in your research, please cite it as follows:
 
 ```bibtex
 @article{Mika Terasaki2024,
-  title={From Microscope to AI: Developing an Integrated Diagnostic System for Endometrial Cytology},
+  title={From Microscope to AI: Developing an Integrated Diagnostic System with Real-Time Object Detection for Endometrial Cytology},
 author={Mika Terasaki, Shun Tanaka, Ichito Shimokawa et al.},
 doi={https://doi.org/10.21203/rs.3.rs-4205271/v1},
 year={2024}
